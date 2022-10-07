@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Animals</title>
+    <link rel = "stylesheet" th:href ="@{/css/cssFTW.css}">
+
+</head>
+
+<body>
+
+
+
+
+<div class="main">
+
+
+
+
+    <a th:href="@{/allCourses}"> Go to Courses </a>
+
+
+
+    <table>
+        <tr>
+            <th>UserName</th>
+            <th>Firstname</th>
+            <th>LastName</th>
+            <th>Course</th>
+            <th>BlackListed</th>
+        </tr>
+        <tr th:each="student:${students}">
+            <td th:text="${student.userName}"></td>
+            <td th:text="${student.firstName}"></td>
+            <td th:text="${student.lastName}"></td>
+            <td th:text="${student.course.courseName}"></td>
+            <td th:if="${student.isOnBlackList()==true}">BlackListed!</td>
+        </tr>
+
+    </table>
+
+
+    <form method= "post" th:object = "${student}" th:action = @{/createStudent}>
+        <label>USERNAME</label>
+        <input type="text" name="userName" th:text = *{userName}><br>
+        <label>PASSWORD</label>
+        <input type="text" name="passWord" th:text = *{passWord}><br>
+        <label>FIRST NAME</label>
+        <input type="text" name="firstName" th:text = *{firstName}><br>
+        <label>LAST NAME</label>
+        <input type="text" name="lastName" th:text = *{lastName}><br>
+        <label>COURSE</label>
+        <select class="form-control" th:field="*{course.courseName}">
+            <option value="">Choose...</option>
+            <option value="Java">Java</option>
+            <option value="C#">C#</option>
+
+        </select>
+
+
+        <input type="submit" value="create">
+
+
+    </form>
+
+
+
+
+
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>countries</title>
+    <link rel = "stylesheet" th:href ="@{/css/cssFTW.css}">
+
+</head>
+
+<body>
+
+
+
+
+<div class="main">
+
+
+
+    <pre id="quote">"Countries"</pre>
+
+
+
+
+
+
+    <ul th:each="a:${countries}">
+        <form>
+        <a th:text="${a.countryName}" th:href="@{/animals/{id}(id= ${a.countryName})}"> </a>
+        </form>
+    </ul>
+
+    <form method= "post" th:action = "@{/addCountry/}">
+
+        <input type="text" name="countryName" th:text = ${country.countryName}>
+
+        <input type="submit" value="create">
+    </form>
+
+
+
+
+
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+</head>
+<body>
+
+<a th:href="@{/allStudents}"> Go to All Students </a><br>
+<a th:href="@{/MakeALoan}"> Go Loan a Computer To a Student </a>
+
+
+<pre id="quote">"Courses"</pre>
+
+
+
+
+
+
+<ol th:each="course:${courses}">
+    <a th:href="@{allStudents/{courseToClick}(courseToClick=${course.courseName})}">[[${course.courseName}]]</a>
+</ol>
+
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Animals</title>
+    <link rel = "stylesheet" th:href ="@{/css/cssFTW.css}">
+
+</head>
+
+<body>
+
+
+
+
+<div class="main">
+
+
+
+    <pre id="quote">"Students from [[${student.course.courseName}]]" </pre>
+    <a th:href="@{/course/all}"> BACK </a>
+
+
+
+    <table>
+        <tr>
+            <th>UserName</th>
+            <th>Firstname</th>
+            <th>LastName</th>
+            <th>Course</th>
+            <th>BlackListed</th>
+        </tr>
+        <tr th:each="student:${students}">
+            <td th:text="${student.userName}"></td>
+            <td th:text="${student.firstName}"></td>
+            <td th:text="${student.lastName}"></td>
+            <td th:text="${student.course.courseName}"></td>
+            <td th:text="${student.isOnBlackList}"></td>
+        </tr>
+
+    </table>
+
+
+    <form method= "post" th:action = @{/student/{c}(c=${student.course.countryName})}>
+        <label>USERNAME</label>
+        <input type="text" name="userName" th:text = ${student.userName}><br>
+        <label>PASSWORD</label>
+        <input type="text" name="passWord" th:text = ${student.passWord}><br>
+        <label>FIRST NAME</label>
+        <input type="text" name="firstName" th:text = ${student.firstName}><br>
+        <label>LAST NAME</label>
+        <input type="text" name="lastName" th:text = ${student.lastName}><br>
+
+
+        <input type="submit" value="create">
+
+
+    </form>
+
+
+
+
+
+
+</div>
+</body>
+
+</html>

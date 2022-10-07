@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>loans</title>
+</head>
+<body>
+
+<a th:href="@{/allCourses}"> Go to Courses </a>
+
+<form  th:action = @{/TooLateReturned}>
+
+    <input type="submit" value="Open after 9 Months">
+</form>
+<form  th:action = @{/allOpen}>
+
+    <input type="submit" value="All Open Loans">
+</form>
+<form  th:action = @{/allLoans}>
+
+    <input type="submit" value="All Loans">
+</form>
+
+<br/>
+
+
+
+<table>
+    <tr>
+        <th>Computer</th>
+        <th>Student</th>
+        <th>Start</th>
+        <th>End</th>
+
+    </tr>
+    <tr th:each="loan:${currentOpenLoans}">
+        <td th:text="${loan.loanedComputer.serialNumber}"></td>
+        <td th:text="${loan.loanedTo.userName}"></td>
+        <td th:text="${loan.startDate}"></td>
+        <td th:text="${loan.endDate != null} ? ${loan.endDate}"></td>
+    </tr>
+
+</table>
+
+<br>
+<br>
+<form method= "post" th:object = "${loanReceipt}" th:action = @{/MakeALoan}>
+
+    <label>STUDENT</label>
+    <select class="form-control" th:field="*{loanedTo.userName}" >
+        <option th:each="student:${students}" th:value="${student.userName}" th:text="${student.userName}">/option>
+
+    </select>
+
+
+
+    <label>COMPUTER</label>
+    <select class="form-control" th:field="*{loanedComputer.serialNumber}" >
+        <option th:each="computer:${computers}" th:value="${computer.serialNumber}" th:text="${computer.serialNumber}">/option>
+
+    </select>
+
+
+    <input type="submit" value="create">
+</form>
+
+</body>
+</html>
